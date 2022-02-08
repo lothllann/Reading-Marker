@@ -283,6 +283,10 @@
         }
     }
     
+    .livro_atual .visual_area {
+        height: 100%;
+    }
+    
     .livro_atual h1 {
         width: 200px;
         text-align: center;
