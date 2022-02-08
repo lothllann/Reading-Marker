@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<HTml>
+
+<head>
+    <title>Reading Marker</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="./src/css/login.css">
+    <link rel="stylesheet" href="./src/css/cadastro.css">
+    <link rel="stylesheet" href="./src/css/index.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@300;400;700&family=Niconne&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+
+        <section class="intro">
+            <div class="container">
+                <h1>Reading Marker</h1>
+                <div class="menu_hamburguer">
+                    <img src="./src/img/menu.svg" alt="">
+                </div>
+            </div>
+        </section>
+
+    </header>
+
+    <section class="perfil">
+        <div class="container">
+            <div class="foto_de_perfil">
+                <img src="./src/img/eu.png" alt="">
+            </div>
+
+            <ul class="perfil_options">
+                <li>Nickolas Ruppenthal</li>
+                <li>Livros lidos: <span data-lidos>14</span></li>
+                <li>Livro atual: <span data-atual>A Verdadeira Obra do Espirito Santo</span></li>
+                <li>Proximos livros: <span data-proximo>Confissões de Agostinho</span></li>
+            </ul>
+        </div>
+        <div class="change_photo" data-change-photo>
+            <img src="./src/img/edit.svg" alt="">
+        </div>
+    </section>
+
+    <section class="edit_area container">
+        <button data-btn-atualizar>Atualize suas Leituras</button>
+    </section>
+
+    <section class="informations container">
+        <div class="navigation_buttons">
+            <button class="btn_ativo" data-btn-lidos>Livros Lidos</button>
+            <button data-btn-atual>Livro Atual</button>
+            <button data-btn-proximo>Proximos Livros</button>
+        </div>
+
+        <div class="visual_area_ex">
+            <div class="livros_lidos ativo" data-container-lidos>
+                <div class="visual_area">
+                    <div class="teste_visual">
+                        <h3>O Silmarillion</h3>
+                        <img src="./src/img/silmarillion.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="livro_atual" data-container-atual>
+                <div class="visual_area">
+
+                    <h1 data-h1-livroAtual>A Verdadeira Obra do Espírito Santo</h1>
+
+                    <div data-imagem-livroAtual>
+                        <img src="./src/img/obra.png" alt="">
+                    </div>
+
+                </div>
+            </div>
+            <div class="prox_livros" data-container-prox>
+                <div class="visual_area">
+
+                    <h1>teste</h1>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+    </section>
+
+
+    <section class="copy">
+        <div class="container">
+            <p>Copyright - Nickolas Ruppenthal & Bruna da Silva</p>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <section class="container_provisorio">
+        <button class="login" data-btn-login>Login</button>
+
+        <button class="cadastro" data-btn-cadastro>Cadastro</button>
+    </section>
+
+    <section class="containerLogin" data-tl>
+        <div class="telaLogin">
+            <h1>Login</h1>
+
+            <div>
+                <label for="email">E-mail</label>
+                <input type="text" id="email" data-input-email>
+            </div>
+
+            <div>
+                <label for="senha">Senha</label>
+                <input type="text" id="senha" data-input-senha>
+            </div>
+
+            <div class="btn">
+                <button>Entrar</button>
+            </div>
+
+            <p>Voce pode também se <a href="index.html">Cadastrar</a></p>
+        </div>
+
+    </section>
+
+
+
+    <script type="module" src="./src/js/index.js"></script>
+</body>
+
+</HTml>
