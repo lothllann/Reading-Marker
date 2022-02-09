@@ -207,7 +207,7 @@ header {
     font-size: 18px;
     font-family: 'Montagu Slab', serif;
     margin-right: -3px;
-    transition: 0.5s ease-in-out;
+    transition: 0.2s ease-in-out;
     cursor: pointer;
 }
 
@@ -425,11 +425,78 @@ header {
     font-size: 16px;
     color: #FFFDFD;
     font-family: 'Montagu Slab', serif;
-    transition: 0.5s ease-in-out;
+    transition: 0.2s ease-in-out;
     cursor: pointer;
 }
 
 .container_att button:hover {
     box-shadow: -1px 4px 5px lightgrey;
     background-color: #799D9F;
+}
+
+.att {
+    width: 350px;
+    height: 500px;
+    border-radius: 15px;
+    border: none;
+    background-color: #FFFDFD;
+    box-shadow: -4px 8px 5px lightgrey;
+    position: absolute;
+    display: none;
+    top: 130px;
+    left: 800px;
+    color: #799D9F;
+}
+
+.att input {
+    width: 150px;
+    height: 20px;
+    margin-bottom: 15PX;
+    border: #799D9F 1px solid;
+    border-radius: 7px;
+    box-sizing: border-box;
+}
+
+.att form div {
+    width: 206px;
+}
+
+.att button {
+    width: 150px;
+    height: 35px;
+    border-radius: 15px;
+    background-color: #D2E0DE;
+    border: none;
+    display: block;
+    margin: 15px auto 0px auto;
+    font-size: 16px;
+    color: #FFFDFD;
+    font-family: 'Montagu Slab', serif;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.att button:hover {
+    box-shadow: -1px 2px 5px lightgrey;
+    background-color: #799D9F;
+}
+
+[data-input-pag] {
+    width: 95px !important;
+}
+
+[data-btn-save] {
+    background-color: #E1DBF0 !important;
+}
+
+[data-btn-save]:hover {
+    background-color: #9A86B3 !important;
+}
+
+[data-container-att-atual] {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    animation: slideRight 0.7s forwards;
 }

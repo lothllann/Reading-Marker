@@ -9,8 +9,9 @@ const Atualizations = () => {
         btnIniciar.classList.toggle('ativo')
     }
 
-
     btnIniciar.addEventListener('click', ativarContainer)
+
+
 }
 
 export default Atualizations;
