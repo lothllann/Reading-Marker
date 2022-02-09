@@ -57,7 +57,7 @@ header {
 }
 
 .perfil {
-    margin-bottom: 50px;
+    margin-bottom: 100px;
 }
 
 .perfil .container {
@@ -154,6 +154,31 @@ header {
     transition: 0.2s ease-in-out;
 }
 
+.edit_area button.ativo {
+    background-color: #FFFDFD;
+    color: #799D9F;
+    box-shadow: -1px 4px 6px lightgray;
+    animation: zigzag 1.5s infinite;
+}
+
+@keyframes zigzag {
+    0% {
+        transform: translateX(0px);
+    }
+    35% {
+        transform: translateX(20px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+.edit_area button.ativo:hover {
+    background-color: lightgray;
+    color: white;
+    animation-play-state: paused;
+}
+
 .edit_area button:hover {
     background-color: #FFFDFD;
     color: #799D9F;
@@ -165,6 +190,7 @@ header {
     align-items: flex-end;
     width: 70%;
     height: 80px;
+    animation: slideRight 1s forwards;
 }
 
 .navigation_buttons button {
@@ -222,6 +248,7 @@ header {
     box-shadow: -1px 4px 5px lightgray;
     cursor: grab;
     overflow-x: hidden;
+    animation: slideRight 1s forwards;
 }
 
 .visual_area {
@@ -349,4 +376,60 @@ header {
     position: relative;
     left: 133px;
     top: 3px;
+}
+
+.container_att {
+    width: 350px;
+    height: 300px;
+    border-radius: 15px;
+    background-color: #FFFDFD;
+    box-shadow: -1px 4px 5px lightgrey;
+    position: absolute;
+    top: 330px;
+    left: 400px;
+    display: none;
+    opacity: 0;
+    animation: slideRight 0.7s forwards;
+}
+
+.container_att.ativo {
+    display: block;
+}
+
+@keyframes slideRight {
+    0% {
+        transform: translateX(-200px);
+    }
+    100% {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+.container_att h2 {
+    color: #799D9F;
+    margin: 15px auto 30px auto;
+    width: 252px;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.container_att button {
+    width: 200px;
+    height: 50px;
+    border-radius: 15px;
+    background-color: #D2E0DE;
+    border: none;
+    display: block;
+    margin: 0 auto 20px auto;
+    font-size: 16px;
+    color: #FFFDFD;
+    font-family: 'Montagu Slab', serif;
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+}
+
+.container_att button:hover {
+    box-shadow: -1px 4px 5px lightgrey;
+    background-color: #799D9F;
 }
