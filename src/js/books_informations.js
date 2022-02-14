@@ -7,7 +7,7 @@ const Informations = () => {
     const containerAtual = document.querySelector('[data-container-atual]')
     const containerProx = document.querySelector('[data-container-prox]')
 
-    console.log(containerLidos)
+
 
 
     function btnLidosLayout(event) {
