@@ -449,10 +449,39 @@ header {
     font-weight: bolder;
     font-size: 30px;
     color: #FFFDFD;
-    background-color: #FA141D;
+    background-color: #BB0F15;
     bottom: 60px;
     left: 325px;
     cursor: pointer;
+    box-shadow: -1px 4px 5px lightgrey;
+    animation: sairFirstSlideRight 0.9s forwards 0.2s;
+    transition: 0.2s ease-in-out;
+    opacity: 0;
+}
+
+.sair:hover {
+    background-color: #FA141D;
+    transform: scale(1.2);
+}
+
+.sair img {
+    width: 18px;
+    height: 18px;
+}
+
+@keyframes sairFirstSlideRight {
+    0% {
+        transform: translateX(-100px);
+        opacity: 0.2;
+    }
+    75% {
+        transform: translateX(10px);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateX(0px);
+        opacity: 1;
+    }
 }
 
 .att {

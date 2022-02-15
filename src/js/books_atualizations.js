@@ -72,6 +72,7 @@ const Atualizations = () => {
         containerAtual.classList.remove('grow')
         containerLidos.classList.remove('grow')
         containerProx.classList.remove('gorw')
+        containerChooseImage.classList.toggle('ativo')
     }
 
     btnChooseImage.addEventListener('click', growUp)
