@@ -7,9 +7,11 @@ const Atualizations = () => {
         event.preventDefault();
         containerAtualizar.classList.toggle('ativo')
         btnIniciar.classList.toggle('ativo')
+        btnSair.classList.toggle('ativo')
         containerLidos.classList.remove('ativo')
         containerProx.classList.remove('ativo')
         containerAtual.classList.remove('ativo')
+        btnSair.classList.add('firstMove')
     }
 
     btnIniciar.addEventListener('click', ativarContainer)
@@ -18,6 +20,7 @@ const Atualizations = () => {
     const btnChamarAtual = document.querySelector('[data-btnA-init-atual]')
     const btnChamarLidos = document.querySelector('[data-btnL-init-lidos]')
     const btnChamarProx = document.querySelector('[data-btnP-init-prox]')
+    const btnSair = document.querySelector('[data-btn-sair]')
 
     const containerAtual = document.querySelector('[data-container-att-atual]')
     const containerLidos = document.querySelector('[data-container-att-lidos]')
@@ -37,6 +40,9 @@ const Atualizations = () => {
             containerAtual.classList.toggle('ativo')
             containerLidos.classList.remove('ativo')
             containerProx.classList.remove('ativo')
+            btnSair.classList.toggle('checkpoint')
+            btnSair.classList.remove('firstMove')
+                // btnSair.classList.toggle('secondMove')
         } else
         if (!!btnn.hasAttribute(option2)) {
             containerLidos.classList.toggle('ativo')
@@ -65,6 +71,14 @@ const Atualizations = () => {
         containerProx.classList.toggle('grow')
         containerChooseImage.classList.toggle('ativo')
 
+
+    }
+
+    function btnMoviment(event) {
+        event.preventDefault();
+        btnSair.classList.toggle('thirdMove')
+            // btnSair.classList.remove('secondMove')
+
     }
 
     function save(event) {
@@ -76,6 +90,7 @@ const Atualizations = () => {
     }
 
     btnChooseImage.addEventListener('click', growUp)
+    btnChooseImage.addEventListener('click', btnMoviment)
     btnSave.addEventListener('click', save)
 
 }

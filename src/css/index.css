@@ -387,7 +387,7 @@ header {
     background-color: #FFFDFD;
     box-shadow: -1px 4px 5px lightgrey;
     position: absolute;
-    top: 330px;
+    top: 320px;
     left: 400px;
     display: none;
     opacity: 0;
@@ -411,7 +411,8 @@ header {
 .container_att h2 {
     color: #799D9F;
     margin: 15px auto 10px auto;
-    width: 252px;
+    max-width: 260px;
+    box-sizing: border-box;
     font-size: 20px;
     font-weight: normal;
 }
@@ -440,23 +441,46 @@ header {
     width: 35px;
     height: 35px;
     border-radius: 50%;
-    position: relative;
-    display: flex;
+    position: absolute;
+    display: none;
     justify-content: center;
     align-items: center;
-    z-index: 2;
+    z-index: 9;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-weight: bolder;
     font-size: 30px;
     color: #FFFDFD;
-    background-color: #BB0F15;
-    bottom: 60px;
-    left: 325px;
+    background-color: black;
     cursor: pointer;
     box-shadow: -1px 4px 5px lightgrey;
-    animation: sairFirstSlideRight 0.9s forwards 0.2s;
     transition: 0.2s ease-in-out;
+    top: 310px;
+    left: 720px;
+}
+
+.sair.ativo {
+    display: flex;
+}
+
+.firstMove {
+    animation: sairFirstSlideRight 0.9s forwards 0.3s;
     opacity: 0;
+}
+
+.secondMove {
+    background-color: black;
+    animation: sairSecondSlideRight 0.8s forwards 0.3s;
+    z-index: 10;
+}
+
+.thirdMove {
+    animation: sairThirdSlideTop 0.8s forwards 0.1s;
+    left: 1120px;
+}
+
+.checkpoint {
+    left: 1120px;
+    top: 310px;
 }
 
 .sair:hover {
@@ -471,8 +495,8 @@ header {
 
 @keyframes sairFirstSlideRight {
     0% {
-        transform: translateX(-100px);
-        opacity: 0.2;
+        transform: translateX(-300px);
+        opacity: 0;
     }
     75% {
         transform: translateX(10px);
@@ -480,6 +504,36 @@ header {
     }
     100% {
         transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes sairSecondSlideRight {
+    0% {
+        transform: translateX(-400px);
+        opacity: 1;
+    }
+    75% {
+        transform: translateX(10px);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes sairThirdSlideTop {
+    0% {
+        transform: translateY(0px);
+        opacity: 0.2;
+    }
+    75% {
+        transform: translateY(-200px);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-190px);
         opacity: 1;
     }
 }
@@ -493,12 +547,12 @@ header {
     box-shadow: -4px 8px 5px lightgrey;
     position: absolute;
     display: none;
-    top: 330px;
+    top: 320px;
     left: 800px;
     color: #799D9F;
     opacity: 0;
     transition: 0.3s ease-in-out;
-    z-index: 3;
+    z-index: 0;
 }
 
 .att.grow {
@@ -507,12 +561,13 @@ header {
 }
 
 .att input {
-    width: 150px;
+    width: 149px;
     height: 30px;
     margin-bottom: 15PX;
     border: #799D9F 2px solid;
     border-radius: 7px;
     box-sizing: border-box;
+    background-color: transparent;
 }
 
 .att form div {
@@ -540,7 +595,7 @@ header {
 }
 
 [data-input-pag] {
-    width: 95px !important;
+    width: 94px !important;
 }
 
 [data-btn-save] {
