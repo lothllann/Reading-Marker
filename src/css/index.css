@@ -454,8 +454,6 @@ header {
     cursor: pointer;
     box-shadow: -1px 4px 5px lightgrey;
     transition: 0.2s ease-in-out;
-    top: 310px;
-    left: 720px;
 }
 
 .sair.ativo {
@@ -465,22 +463,28 @@ header {
 .firstMove {
     animation: sairFirstSlideRight 0.9s forwards 0.3s;
     opacity: 0;
+    top: 310px;
+    left: 720px;
 }
 
 .secondMove {
     background-color: black;
     animation: sairSecondSlideRight 0.8s forwards 0.3s;
     z-index: 10;
+    top: 310px;
+    left: 720px;
 }
 
 .thirdMove {
     animation: sairThirdSlideTop 0.8s forwards 0.1s;
     left: 1120px;
+    top: 310px;
 }
 
-.checkpoint {
+.fourthMove {
+    animation: sairFourthSlideBot 0.8s forwards 0.1s;
     left: 1120px;
-    top: 310px;
+    top: 120px
 }
 
 .sair:hover {
@@ -510,15 +514,15 @@ header {
 
 @keyframes sairSecondSlideRight {
     0% {
-        transform: translateX(-400px);
+        transform: translateX(0px);
         opacity: 1;
     }
     75% {
-        transform: translateX(10px);
+        transform: translateX(410px);
         opacity: 0.8;
     }
     100% {
-        transform: translateX(0px);
+        transform: translateX(400px);
         opacity: 1;
     }
 }
@@ -526,14 +530,29 @@ header {
 @keyframes sairThirdSlideTop {
     0% {
         transform: translateY(0px);
-        opacity: 0.2;
+        opacity: 1;
     }
     75% {
         transform: translateY(-200px);
-        opacity: 0.8;
+        opacity: 1;
     }
     100% {
         transform: translateY(-190px);
+        opacity: 1;
+    }
+}
+
+@keyframes sairFourthSlideBot {
+    0% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+    75% {
+        transform: translateY(200px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(190px);
         opacity: 1;
     }
 }
@@ -633,11 +652,11 @@ header {
     }
 }
 
-[data-show-book] {
+.amostragem_da_capa {
     margin-top: 0px;
 }
 
-[data-show-book]::before {
+.amostragem_da_capa::before {
     content: '';
     display: block;
     margin: 30px auto 15px auto;

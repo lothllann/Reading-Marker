@@ -30,29 +30,63 @@ const Atualizations = () => {
     const option2 = 'data-btnL-init-lidos';
     const option3 = 'data-btnP-init-prox';
 
+    function decrease() {
+        containerAtual.classList.remove('grow')
+        containerLidos.classList.remove('grow')
+        containerProx.classList.remove('grow')
+        containerChooseImage.classList.remove('ativo')
+        containerChooseImage2.classList.remove('ativo')
+        containerChooseImage3.classList.remove('ativo')
+            //     if(!!btnSair.classList.contains('thirdMove')){
+            //     setTimeout(()=>{
+            //         btnSair.classList.add('fourthMove');
+            //     },1)
+            // }
 
+    }
 
     function show(event) {
         event.preventDefault();
         let btnn = event.target
 
         if (!!btnn.hasAttribute(option1)) {
-            containerAtual.classList.toggle('ativo')
+            containerAtual.classList.add('ativo')
             containerLidos.classList.remove('ativo')
             containerProx.classList.remove('ativo')
-            btnSair.classList.toggle('checkpoint')
             btnSair.classList.remove('firstMove')
-                // btnSair.classList.toggle('secondMove')
+            btnSair.classList.add('secondMove')
+            setTimeout(() => {
+                btnSair.classList.add('checkpoint')
+            }, 200)
+            decrease()
+
+
         } else
         if (!!btnn.hasAttribute(option2)) {
-            containerLidos.classList.toggle('ativo')
+            containerLidos.classList.add('ativo')
             containerProx.classList.remove('ativo')
             containerAtual.classList.remove('ativo')
+            btnSair.classList.remove('firstMove')
+            btnSair.classList.add('secondMove')
+            setTimeout(() => {
+                btnSair.classList.add('checkpoint')
+            }, 200)
+            decrease()
+
+
         } else
         if (!!btnn.hasAttribute(option3)) {
-            containerProx.classList.toggle('ativo')
+            containerProx.classList.add('ativo')
             containerAtual.classList.remove('ativo')
             containerLidos.classList.remove('ativo')
+            btnSair.classList.remove('firstMove')
+            btnSair.classList.add('secondMove')
+            setTimeout(() => {
+                btnSair.classList.add('checkpoint')
+            }, 200)
+            decrease()
+
+
         }
     }
 
@@ -61,8 +95,14 @@ const Atualizations = () => {
     btnChamarProx.addEventListener('click', show)
 
     const btnChooseImage = document.querySelector('[data-choose-capa]')
+    const btnChooseImage2 = document.querySelector('[data-choose-capa2]')
+    const btnChooseImage3 = document.querySelector('[data-choose-capa3]')
+
     const btnSave = document.querySelector('[data-btn-save]')
+
     const containerChooseImage = document.querySelector('[data-show-book]')
+    const containerChooseImage2 = document.querySelector('[data-show-book2]')
+    const containerChooseImage3 = document.querySelector('[data-show-book3]')
 
     function growUp(event) {
         event.preventDefault();
@@ -70,27 +110,53 @@ const Atualizations = () => {
         containerLidos.classList.toggle('grow')
         containerProx.classList.toggle('grow')
         containerChooseImage.classList.toggle('ativo')
+        containerChooseImage2.classList.toggle('ativo')
+        containerChooseImage3.classList.toggle('ativo')
 
 
     }
 
+
     function btnMoviment(event) {
         event.preventDefault();
-        btnSair.classList.toggle('thirdMove')
-            // btnSair.classList.remove('secondMove')
+        if (!!btnSair.classList.contains('checkpoint')) {
+            btnSair.classList.remove('secondMove')
+            btnSair.classList.remove('fourthMove')
+
+            setTimeout(function() {
+                btnSair.classList.remove('checkpoint')
+                btnSair.classList.add('thirdMove')
+            }, 1);
+
+        } else if (!btnSair.classList.contains('checkpoint')) {
+            btnSair.classList.remove('secondMove');
+            setTimeout(() => {
+                btnSair.classList.add('fourthMove');
+            }, 1)
+            btnSair.classList.remove('thirdMove');
+
+            setTimeout(function() {
+                btnSair.classList.add('checkpoint')
+            }, 200);
+        }
+
 
     }
 
     function save(event) {
         event.preventDefault();
-        containerAtual.classList.remove('grow')
-        containerLidos.classList.remove('grow')
-        containerProx.classList.remove('gorw')
-        containerChooseImage.classList.toggle('ativo')
+
     }
 
     btnChooseImage.addEventListener('click', growUp)
     btnChooseImage.addEventListener('click', btnMoviment)
+
+    btnChooseImage2.addEventListener('click', growUp)
+    btnChooseImage2.addEventListener('click', btnMoviment)
+
+    btnChooseImage3.addEventListener('click', growUp)
+    btnChooseImage3.addEventListener('click', btnMoviment)
+
     btnSave.addEventListener('click', save)
 
 }
