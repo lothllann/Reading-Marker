@@ -24,19 +24,28 @@ const Atualizations = () => {
     //FUNÇÕES
     function ativarContainer(event) {
         event.preventDefault();
+        btnSair.classList.add('firstMove')
+        btnIniciar.classList.toggle('ativo')
+        btnSair.classList.toggle('ativo')
         btnChamarAtual.classList.remove('ativo')
         btnChamarLidos.classList.remove('ativo')
         btnChamarProx.classList.remove('ativo')
+        btnSair.classList.remove('slideLeft')
+        btnSair.classList.remove('cp2')
+        btnSair.classList.remove('cp3')
+        btnSair.classList.remove('backToStart')
+        btnSair.classList.remove('backToStart2')
+        btnSair.classList.remove('secondMove')
+        btnSair.classList.remove('thirdMove')
+        btnSair.classList.remove('fourthMove')
+
+
         containerAtualizar.classList.toggle('ativo')
-        btnIniciar.classList.toggle('ativo')
-        btnSair.classList.toggle('ativo')
+        containerAtualizar.classList.remove('slideLeft')
         containerLidos.classList.remove('ativo')
         containerProx.classList.remove('ativo')
         containerAtual.classList.remove('ativo')
-        btnSair.classList.add('firstMove')
-        containerAtualizar.classList.remove('slideLeft')
-        btnSair.classList.remove('slideLeft')
-        btnSair.classList.remove('cp2')
+
 
     }
 
