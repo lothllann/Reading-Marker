@@ -1,10 +1,32 @@
 const Atualizations = () => {
 
+    //BOTÕES
     const btnIniciar = document.querySelector('[data-btn-atualizar]');
-    const containerAtualizar = document.querySelector('[data-container-atualizar]');
+    const btnChamarAtual = document.querySelector('[data-btn-init-atual]')
+    const btnChamarLidos = document.querySelector('[data-btn-init-lidos]')
+    const btnChamarProx = document.querySelector('[data-btn-init-prox]')
+    const btnSair = document.querySelector('[data-btn-sair]')
+    const btnChooseImage = document.querySelector('[data-choose-capa]')
+    const btnChooseImage2 = document.querySelector('[data-choose-capa2]')
+    const btnChooseImage3 = document.querySelector('[data-choose-capa3]')
+    const btnSave = document.querySelector('[data-btn-save]')
 
+
+    //CONTAINERS
+    const containerAtualizar = document.querySelector('[data-container-atualizar]');
+    const containerAtual = document.querySelector('[data-container-att-atual]')
+    const containerLidos = document.querySelector('[data-container-att-lidos]')
+    const containerProx = document.querySelector('[data-container-att-prox]')
+    const containerChooseImage = document.querySelector('[data-show-book]')
+    const containerChooseImage2 = document.querySelector('[data-show-book2]')
+    const containerChooseImage3 = document.querySelector('[data-show-book3]')
+
+    //FUNÇÕES
     function ativarContainer(event) {
         event.preventDefault();
+        btnChamarAtual.classList.remove('ativo')
+        btnChamarLidos.classList.remove('ativo')
+        btnChamarProx.classList.remove('ativo')
         containerAtualizar.classList.toggle('ativo')
         btnIniciar.classList.toggle('ativo')
         btnSair.classList.toggle('ativo')
@@ -12,23 +34,10 @@ const Atualizations = () => {
         containerProx.classList.remove('ativo')
         containerAtual.classList.remove('ativo')
         btnSair.classList.add('firstMove')
+        containerAtualizar.classList.remove('slideLeft')
+        btnSair.classList.remove('slideLeft')
+
     }
-
-    btnIniciar.addEventListener('click', ativarContainer)
-
-
-    const btnChamarAtual = document.querySelector('[data-btnA-init-atual]')
-    const btnChamarLidos = document.querySelector('[data-btnL-init-lidos]')
-    const btnChamarProx = document.querySelector('[data-btnP-init-prox]')
-    const btnSair = document.querySelector('[data-btn-sair]')
-
-    const containerAtual = document.querySelector('[data-container-att-atual]')
-    const containerLidos = document.querySelector('[data-container-att-lidos]')
-    const containerProx = document.querySelector('[data-container-att-prox]')
-
-    const option1 = 'data-btnA-init-atual';
-    const option2 = 'data-btnL-init-lidos';
-    const option3 = 'data-btnP-init-prox';
 
     function decrease() {
         containerAtual.classList.remove('grow')
@@ -45,16 +54,29 @@ const Atualizations = () => {
 
     }
 
+    const option1 = 'data-btn-init-atual';
+    const option2 = 'data-btn-init-lidos';
+    const option3 = 'data-btn-init-prox';
+
     function show(event) {
         event.preventDefault();
         let btnn = event.target
 
         if (!!btnn.hasAttribute(option1)) {
+            btnChamarAtual.classList.add('ativo')
+            btnChamarLidos.classList.remove('ativo')
+            btnChamarProx.classList.remove('ativo')
+
             containerAtual.classList.add('ativo')
             containerLidos.classList.remove('ativo')
             containerProx.classList.remove('ativo')
             btnSair.classList.remove('firstMove')
-            btnSair.classList.add('secondMove')
+            btnSair.classList.remove('backToStart')
+            setTimeout(() => {
+
+                btnSair.classList.add('secondMove')
+            }, 1)
+
             setTimeout(() => {
                 btnSair.classList.add('checkpoint')
             }, 200)
@@ -63,6 +85,10 @@ const Atualizations = () => {
 
         } else
         if (!!btnn.hasAttribute(option2)) {
+            btnChamarLidos.classList.add('ativo')
+            btnChamarAtual.classList.remove('ativo')
+            btnChamarProx.classList.remove('ativo')
+
             containerLidos.classList.add('ativo')
             containerProx.classList.remove('ativo')
             containerAtual.classList.remove('ativo')
@@ -76,6 +102,10 @@ const Atualizations = () => {
 
         } else
         if (!!btnn.hasAttribute(option3)) {
+            btnChamarProx.classList.add('ativo')
+            btnChamarAtual.classList.remove('ativo')
+            btnChamarLidos.classList.remove('ativo')
+
             containerProx.classList.add('ativo')
             containerAtual.classList.remove('ativo')
             containerLidos.classList.remove('ativo')
@@ -90,31 +120,7 @@ const Atualizations = () => {
         }
     }
 
-    btnChamarAtual.addEventListener('click', show)
-    btnChamarLidos.addEventListener('click', show)
-    btnChamarProx.addEventListener('click', show)
 
-    const btnChooseImage = document.querySelector('[data-choose-capa]')
-    const btnChooseImage2 = document.querySelector('[data-choose-capa2]')
-    const btnChooseImage3 = document.querySelector('[data-choose-capa3]')
-
-    const btnSave = document.querySelector('[data-btn-save]')
-
-    const containerChooseImage = document.querySelector('[data-show-book]')
-    const containerChooseImage2 = document.querySelector('[data-show-book2]')
-    const containerChooseImage3 = document.querySelector('[data-show-book3]')
-
-    function growUp(event) {
-        event.preventDefault();
-        containerAtual.classList.toggle('grow')
-        containerLidos.classList.toggle('grow')
-        containerProx.classList.toggle('grow')
-        containerChooseImage.classList.toggle('ativo')
-        containerChooseImage2.classList.toggle('ativo')
-        containerChooseImage3.classList.toggle('ativo')
-
-
-    }
 
 
     function btnMoviment(event) {
@@ -143,11 +149,62 @@ const Atualizations = () => {
 
     }
 
+
+
+    function quit(event) {
+        event.preventDefault();
+
+        if (!containerAtual.classList.contains('ativo')) {
+
+            setTimeout(() => {
+                btnSair.classList.add('slideLeft')
+            }, 150)
+            containerAtualizar.classList.add('slideLeft')
+            btnIniciar.classList.remove('ativo')
+            setTimeout(() => {
+                containerAtualizar.classList.remove('ativo')
+                btnSair.classList.remove('ativo')
+
+            }, 600)
+
+        } else if (!!btnSair.classList.contains('secondMove') ||
+            !!btnSair.classList.contains('fourthMove')) {
+            containerAtual.classList.remove('ativo')
+
+
+            btnSair.classList.remove('secondMove')
+            setTimeout(() => {
+                btnSair.classList.add('backToStart')
+            }, 1)
+
+        } else if (!!btnSair.classList.contains('thirdMove')) {
+
+        }
+
+
+    }
+
     function save(event) {
         event.preventDefault();
 
     }
 
+    function growUp(event) {
+        event.preventDefault();
+        containerAtual.classList.toggle('grow')
+        containerLidos.classList.toggle('grow')
+        containerProx.classList.toggle('grow')
+        containerChooseImage.classList.toggle('ativo')
+        containerChooseImage2.classList.toggle('ativo')
+        containerChooseImage3.classList.toggle('ativo')
+    }
+
+
+    //LISTENERS
+    btnIniciar.addEventListener('click', ativarContainer)
+    btnChamarAtual.addEventListener('click', show)
+    btnChamarLidos.addEventListener('click', show)
+    btnChamarProx.addEventListener('click', show)
     btnChooseImage.addEventListener('click', growUp)
     btnChooseImage.addEventListener('click', btnMoviment)
 
@@ -158,6 +215,7 @@ const Atualizations = () => {
     btnChooseImage3.addEventListener('click', btnMoviment)
 
     btnSave.addEventListener('click', save)
+    btnSair.addEventListener('click', quit)
 
 }
 
