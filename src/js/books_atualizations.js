@@ -36,6 +36,7 @@ const Atualizations = () => {
         btnSair.classList.add('firstMove')
         containerAtualizar.classList.remove('slideLeft')
         btnSair.classList.remove('slideLeft')
+        btnSair.classList.remove('cp2')
 
     }
 
@@ -46,11 +47,9 @@ const Atualizations = () => {
         containerChooseImage.classList.remove('ativo')
         containerChooseImage2.classList.remove('ativo')
         containerChooseImage3.classList.remove('ativo')
-            //     if(!!btnSair.classList.contains('thirdMove')){
-            //     setTimeout(()=>{
-            //         btnSair.classList.add('fourthMove');
-            //     },1)
-            // }
+        btnSair.classList.remove('backToStart')
+        btnSair.classList.remove('backToStart2')
+        btnSair.classList.remove('cp3')
 
     }
 
@@ -71,7 +70,9 @@ const Atualizations = () => {
             containerLidos.classList.remove('ativo')
             containerProx.classList.remove('ativo')
             btnSair.classList.remove('firstMove')
-            btnSair.classList.remove('backToStart')
+
+
+
             setTimeout(() => {
 
                 btnSair.classList.add('secondMove')
@@ -122,7 +123,6 @@ const Atualizations = () => {
 
 
 
-
     function btnMoviment(event) {
         event.preventDefault();
         if (!!btnSair.classList.contains('checkpoint')) {
@@ -149,12 +149,28 @@ const Atualizations = () => {
 
     }
 
+    function aux() {
+        btnChamarProx.classList.remove('ativo')
+        btnChamarAtual.classList.remove('ativo')
+        btnChamarLidos.classList.remove('ativo')
+        btnSair.classList.remove('checkpoint')
+
+    }
 
 
     function quit(event) {
         event.preventDefault();
 
         if (!containerAtual.classList.contains('ativo')) {
+            if (!!btnSair.classList.contains('backToStart') || !!btnSair.classList.contains('backToStart2')) {
+                btnSair.classList.remove('backToStart')
+                btnSair.classList.remove('backToStart2')
+                btnSair.classList.remove('cp3')
+
+                setTimeout(() => {
+                    btnSair.classList.add('cp2')
+                }, 1)
+            }
 
             setTimeout(() => {
                 btnSair.classList.add('slideLeft')
@@ -167,17 +183,29 @@ const Atualizations = () => {
 
             }, 600)
 
+
+
+
+
         } else if (!!btnSair.classList.contains('secondMove') ||
             !!btnSair.classList.contains('fourthMove')) {
+            aux()
             containerAtual.classList.remove('ativo')
-
-
             btnSair.classList.remove('secondMove')
+            btnSair.classList.remove('fourthMove')
             setTimeout(() => {
                 btnSair.classList.add('backToStart')
             }, 1)
 
+
         } else if (!!btnSair.classList.contains('thirdMove')) {
+            aux()
+            containerAtual.classList.remove('ativo')
+            btnSair.classList.remove('thirdMove')
+            setTimeout(() => {
+                btnSair.classList.add('cp3')
+            }, 1)
+            btnSair.classList.add('backToStart2')
 
         }
 

@@ -493,13 +493,27 @@ header {
 }
 
 .backToStart {
-    animation: backToStart 0.8s forwards 0.1s;
+    animation: backToStart 0.8s forwards;
     top: 310px;
     left: 1120px;
 }
 
+.backToStart2 {
+    animation: backToStart2 0.8s forwards;
+}
+
 .slideLeft {
     animation: slideLeft 0.5s forwards;
+}
+
+.cp2 {
+    top: 310px;
+    left: 720px;
+}
+
+.cp3 {
+    top: 120px;
+    left: 1120px;
 }
 
 .sair:hover {
@@ -592,6 +606,18 @@ header {
     }
     100% {
         transform: translateX(-400px);
+    }
+}
+
+@keyframes backToStart2 {
+    0% {
+        transform: translate(0px, 0px);
+    }
+    75% {
+        transform: translate(-410px, 200px);
+    }
+    100% {
+        transform: translate(-400px, 190px);
     }
 }
 
