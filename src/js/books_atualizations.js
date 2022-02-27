@@ -21,6 +21,8 @@ const Atualizations = () => {
     const containerChooseImage2 = document.querySelector('[data-show-book2]')
     const containerChooseImage3 = document.querySelector('[data-show-book3]')
 
+
+
     //FUNÇÕES
     function ativarContainer(event) {
         event.preventDefault();
@@ -66,6 +68,18 @@ const Atualizations = () => {
     const option2 = 'data-btn-init-lidos';
     const option3 = 'data-btn-init-prox';
 
+    function showTimeout() {
+
+        setTimeout(() => {
+            btnSair.classList.add('secondMove')
+        }, 1)
+
+        setTimeout(() => {
+            btnSair.classList.add('checkpoint')
+        }, 200)
+        decrease()
+    }
+
     function show(event) {
         event.preventDefault();
         let btnn = event.target
@@ -79,18 +93,7 @@ const Atualizations = () => {
             containerLidos.classList.remove('ativo')
             containerProx.classList.remove('ativo')
             btnSair.classList.remove('firstMove')
-
-
-
-            setTimeout(() => {
-
-                btnSair.classList.add('secondMove')
-            }, 1)
-
-            setTimeout(() => {
-                btnSair.classList.add('checkpoint')
-            }, 200)
-            decrease()
+            showTimeout()
 
 
         } else
@@ -103,11 +106,8 @@ const Atualizations = () => {
             containerProx.classList.remove('ativo')
             containerAtual.classList.remove('ativo')
             btnSair.classList.remove('firstMove')
-            btnSair.classList.add('secondMove')
-            setTimeout(() => {
-                btnSair.classList.add('checkpoint')
-            }, 200)
-            decrease()
+
+            showTimeout()
 
 
         } else
@@ -120,11 +120,8 @@ const Atualizations = () => {
             containerAtual.classList.remove('ativo')
             containerLidos.classList.remove('ativo')
             btnSair.classList.remove('firstMove')
-            btnSair.classList.add('secondMove')
-            setTimeout(() => {
-                btnSair.classList.add('checkpoint')
-            }, 200)
-            decrease()
+
+            showTimeout()
 
 
         }
@@ -167,10 +164,27 @@ const Atualizations = () => {
     }
 
 
+
+
+
     function quit(event) {
         event.preventDefault();
 
-        if (!containerAtual.classList.contains('ativo')) {
+        if (!!containerAtual.classList.contains('ativo')) {
+            var resultado = containerAtual
+        } else if (!!containerLidos.classList.contains('ativo')) {
+            var resultado = containerLidos
+        } else if (!!containerProx.classList.contains('ativo')) {
+            var resultado = containerProx
+        } else {
+            var resultado = containerAtual
+        }
+        const containerDescoberto = resultado
+
+
+        const containerCerto = containerDescoberto
+
+        if (!containerCerto.classList.contains('ativo')) {
             if (!!btnSair.classList.contains('backToStart') || !!btnSair.classList.contains('backToStart2')) {
                 btnSair.classList.remove('backToStart')
                 btnSair.classList.remove('backToStart2')
@@ -195,11 +209,10 @@ const Atualizations = () => {
 
 
 
-
         } else if (!!btnSair.classList.contains('secondMove') ||
             !!btnSair.classList.contains('fourthMove')) {
             aux()
-            containerAtual.classList.remove('ativo')
+            containerCerto.classList.remove('ativo')
             btnSair.classList.remove('secondMove')
             btnSair.classList.remove('fourthMove')
             setTimeout(() => {
@@ -209,7 +222,7 @@ const Atualizations = () => {
 
         } else if (!!btnSair.classList.contains('thirdMove')) {
             aux()
-            containerAtual.classList.remove('ativo')
+            containerCerto.classList.remove('ativo')
             btnSair.classList.remove('thirdMove')
             setTimeout(() => {
                 btnSair.classList.add('cp3')

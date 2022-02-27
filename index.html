@@ -31,9 +31,13 @@
         <section class="intro">
             <div class="container">
                 <h1>Reading Marker</h1>
-                <div class="menu_hamburguer">
-                    <img src="./src/img/menu.svg" alt="">
-                </div>
+                <input type="checkbox" id="checkbox-menu">
+
+                <label for="checkbox-menu">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </label>
             </div>
         </section>
 
@@ -97,6 +101,11 @@
                             <li>Páginas: 118</li>
                             <li>Ano de Publicação: 1995 </li>
                             <li>Sinopse: Esta obra é uma exposição de 1João 4 feita com maestria e brilhantismo por Jonathan Edwards, que nos ensina a identificar se uma obra é do Espirito Santo de DEUS ou não.
+                            </li>
+                            <li class="edit_pag_atual">
+                                <label for="pag_atual">Página Atual:</label>
+                                <input type="text" id="pag_atual" data-pagina-atual>
+                                <button>Salvar</button>
                             </li>
                             <li data-progresso>Progresso:
                                 <div>
@@ -192,6 +201,14 @@
         <div class="amostragem_da_capa" data-show-book3>
             <img src="./src/img/silmarillion.png" alt="">
         </div>
+    </section>
+
+    <section class="menu">
+        <ul>
+            <li>Option 1</li>
+            <li>Option 2</li>
+            <li>Option 3</li>
+        </ul>
     </section>
 
 
