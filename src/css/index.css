@@ -112,6 +112,7 @@ header {
     left: 1000px;
     background-color: #FFFDFD;
     box-shadow: -1px 4px 6px lightgrey;
+    display: none;
 }
 
 .menu ul li {
