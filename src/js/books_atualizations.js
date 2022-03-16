@@ -2,24 +2,37 @@ const Atualizations = () => {
 
     //BOTÕES
     const btnIniciar = document.querySelector('[data-btn-atualizar]');
+
     const btnChamarAtual = document.querySelector('[data-btn-init-atual]')
     const btnChamarLidos = document.querySelector('[data-btn-init-lidos]')
     const btnChamarProx = document.querySelector('[data-btn-init-prox]')
-    const btnSair = document.querySelector('[data-btn-sair]')
+
+    const listaDeBtns = document.querySelectorAll('.btn_att')
+
+
     const btnChooseImage = document.querySelector('[data-choose-capa]')
     const btnChooseImage2 = document.querySelector('[data-choose-capa2]')
     const btnChooseImage3 = document.querySelector('[data-choose-capa3]')
-    const btnSave = document.querySelector('[data-btn-save]')
 
+    const listaBtnImg = document.querySelectorAll('#choose')
+
+
+    const btnSave = document.querySelector('[data-btn-save]')
+    const btnSair = document.querySelector('[data-btn-sair]')
 
     //CONTAINERS
     const containerAtualizar = document.querySelector('[data-container-atualizar]');
     const containerAtual = document.querySelector('[data-container-att-atual]')
     const containerLidos = document.querySelector('[data-container-att-lidos]')
     const containerProx = document.querySelector('[data-container-att-prox]')
+    const listaDeContainersPrimarios = document.querySelectorAll('.att')
+
+
     const containerChooseImage = document.querySelector('[data-show-book]')
     const containerChooseImage2 = document.querySelector('[data-show-book2]')
     const containerChooseImage3 = document.querySelector('[data-show-book3]')
+    const listaDeContainersSecundarios = document.querySelectorAll('.amostragem_da_capa')
+
 
 
 
@@ -84,16 +97,22 @@ const Atualizations = () => {
         event.preventDefault();
         let btnn = event.target
 
+
+
         if (!!btnn.hasAttribute(option1)) {
             btnChamarAtual.classList.add('ativo')
             btnChamarLidos.classList.remove('ativo')
             btnChamarProx.classList.remove('ativo')
 
-            containerAtual.classList.add('ativo')
-            containerLidos.classList.remove('ativo')
-            containerProx.classList.remove('ativo')
-            btnSair.classList.remove('firstMove')
-            showTimeout()
+            if (!btnSair.classList.contains('thirdMove')) {
+                containerAtual.classList.add('ativo')
+                containerLidos.classList.remove('ativo')
+                containerProx.classList.remove('ativo')
+                btnSair.classList.remove('firstMove')
+                showTimeout()
+            }
+
+
 
 
         } else
@@ -101,13 +120,15 @@ const Atualizations = () => {
             btnChamarLidos.classList.add('ativo')
             btnChamarAtual.classList.remove('ativo')
             btnChamarProx.classList.remove('ativo')
+            if (!btnSair.classList.contains('thirdMove')) {
+                containerLidos.classList.add('ativo')
+                containerProx.classList.remove('ativo')
+                containerAtual.classList.remove('ativo')
+                btnSair.classList.remove('firstMove')
 
-            containerLidos.classList.add('ativo')
-            containerProx.classList.remove('ativo')
-            containerAtual.classList.remove('ativo')
-            btnSair.classList.remove('firstMove')
+                showTimeout()
+            }
 
-            showTimeout()
 
 
         } else
@@ -116,12 +137,15 @@ const Atualizations = () => {
             btnChamarAtual.classList.remove('ativo')
             btnChamarLidos.classList.remove('ativo')
 
-            containerProx.classList.add('ativo')
-            containerAtual.classList.remove('ativo')
-            containerLidos.classList.remove('ativo')
-            btnSair.classList.remove('firstMove')
+            if (!btnSair.classList.contains('thirdMove')) {
+                containerProx.classList.add('ativo')
+                containerAtual.classList.remove('ativo')
+                containerLidos.classList.remove('ativo')
+                btnSair.classList.remove('firstMove')
 
-            showTimeout()
+                showTimeout()
+            }
+
 
 
         }
