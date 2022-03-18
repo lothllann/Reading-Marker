@@ -1,15 +1,6 @@
 const Atualizations = () => {
     //BOTÕES
-    const btnChamarAtual = document.querySelector("[data-btn-init-atual]");
-    const btnChamarLidos = document.querySelector("[data-btn-init-lidos]");
-    const btnChamarProx = document.querySelector("[data-btn-init-prox]");
-
     const listaDeBtns = document.querySelectorAll(".btn_att");
-
-    const btnChooseImage = document.querySelector("[data-choose-capa]");
-    const btnChooseImage2 = document.querySelector("[data-choose-capa2]");
-    const btnChooseImage3 = document.querySelector("[data-choose-capa3]");
-
     const listaBtnImg = document.querySelectorAll("#choose");
 
     const btnIniciar = document.querySelector("[data-btn-atualizar]");
@@ -25,9 +16,6 @@ const Atualizations = () => {
     const containerProx = document.querySelector("[data-container-att-prox]");
     const listaDeContainersPrimarios = document.querySelectorAll(".att");
 
-    const containerChooseImage = document.querySelector("[data-show-book]");
-    const containerChooseImage2 = document.querySelector("[data-show-book2]");
-    const containerChooseImage3 = document.querySelector("[data-show-book3]");
     const listaDeContainersSecundarios = document.querySelectorAll(
         ".amostragem_da_capa"
     );
@@ -46,8 +34,11 @@ const Atualizations = () => {
         if (containerAtualizar.classList.contains("ativo")) {
             removeAtivo(listaDeBtns);
             removeAtivo(listaDeContainersPrimarios);
+            retirarDisabled();
+            retirarGrow();
         } else {
             btnSair.classList.add("firstMove");
+            removeAtivo(listaDeBtns);
         }
 
         btnSair.classList.remove(
@@ -66,122 +57,113 @@ const Atualizations = () => {
         containerAtualizar.classList.toggle("ativo");
     }
 
-    function decrease() {
-        containerAtual.classList.remove("grow");
-        containerLidos.classList.remove("grow");
-        containerProx.classList.remove("grow");
-        containerChooseImage.classList.remove("ativo");
-        containerChooseImage2.classList.remove("ativo");
-        containerChooseImage3.classList.remove("ativo");
-        btnSair.classList.remove("backToStart");
-        btnSair.classList.remove("backToStart2");
-        btnSair.classList.remove("cp3");
-    }
-
-
     for (let i = 0; i < listaDeBtns.length; i++) {
         const btn = listaDeBtns[i];
-
         btn.onclick = () => {
-            mostrar(btn);
-            retirar(btn);
+            ativarbtn(btn);
+            desativarbtn(btn);
+            abrirMenu(btn);
             showTimeout();
         };
 
+
     }
 
+    function abrirMenu(btn) {
 
-    function mostrar(btn) {
+        const livroAtual = "data-btn-init-atual";
+        const livrosLidos = "data-btn-init-lidos";
+        const proximosLivros = "data-btn-init-prox";
 
-        const e = btn;
-        e.classList.add('ativo')
+        if (btn.hasAttribute(livroAtual)) {
+            containerAtual.classList.add('ativo')
 
+        } else if (btn.hasAttribute(livrosLidos)) {
+            containerLidos.classList.add('ativo')
 
-        listaDeContainersPrimarios.forEach((e) => {
-            e.classList.add('ativo')
-
-        })
-    }
-
-    function retirar(btn) {
-
-        for (let x = 0; x < listaDeContainersPrimarios.length; x++) {
-            const e = listaDeContainersPrimarios[x];
+        } else if (btn.hasAttribute(proximosLivros)) {
+            containerProx.classList.add('ativo')
 
         }
+    }
+
+    function ativarbtn(btn) {
+
+        if (btn.classList.contains('ativo')) {
+
+        } else {
+            btn.classList.add('ativo')
+        }
+
+    }
+
+    function desativarbtn(btn) {
 
         for (let i = 0; i < listaDeBtns.length; i++) {
             const e = listaDeBtns[i];
             if (e != btn) {
+                e.disabled = true;
+            }
+        }
+
+    }
+
+    function retirarDisabled() {
+        for (let x = 0; x < listaDeBtns.length; x++) {
+            const e = listaDeBtns[x];
+            if (e.disabled === true) {
+                e.disabled = false
+            }
+        }
+    }
+
+    function retirarGrow() {
+        for (let i = 0; i < listaDeContainersPrimarios.length; i++) {
+            const e = listaDeContainersPrimarios[i];
+            if (e.classList.contains('grow')) {
+                e.classList.remove('grow')
+            }
+        }
+
+        for (let x = 0; x < listaDeContainersSecundarios.length; x++) {
+            const e = listaDeContainersSecundarios[x];
+            if (e.classList.contains('ativo')) {
                 e.classList.remove('ativo')
             }
         }
-
-
-
     }
+
+
+    function decrease() {
+        btnSair.classList.remove("backToStart", "backToStart2", "cp3");
+    }
+
 
     function showTimeout() {
         btnSair.classList.remove("firstMove");
-        setTimeout(() => {
 
-            btnSair.classList.add("secondMove");
-        }, 1);
-        setTimeout(() => {
-            btnSair.classList.add("checkpoint");
-        }, 200);
+        if (!btnSair.classList.contains('thirdMove')) {
+            setTimeout(() => {
+                btnSair.classList.add("secondMove");
+            }, 1);
+            setTimeout(() => {
+                btnSair.classList.add("checkpoint");
+            }, 200);
+        }
         decrease();
+
+
     }
 
-
-    const option1 = "data-btn-init-atual";
-    const option2 = "data-btn-init-lidos";
-    const option3 = "data-btn-init-prox";
-
-    function show(event) {
-        event.preventDefault();
-        let btnn = event.target;
-
-
-        if (!!btnn.hasAttribute(option1)) {
-            // btnChamarAtual.classList.add("ativo");
-            // btnChamarLidos.classList.remove("ativo");
-            // btnChamarProx.classList.remove("ativo");
-
-            if (!btnSair.classList.contains("thirdMove")) {
-                // containerAtual.classList.add("ativo");
-                containerLidos.classList.remove("ativo");
-                containerProx.classList.remove("ativo");
-                // btnSair.classList.remove("firstMove");
-                // showTimeout();
-            }
-        } else if (!!btnn.hasAttribute(option2)) {
-            // btnChamarLidos.classList.add("ativo");
-            // btnChamarAtual.classList.remove("ativo");
-            // btnChamarProx.classList.remove("ativo");
-            if (!btnSair.classList.contains("thirdMove")) {
-                // containerLidos.classList.add("ativo");
-                containerProx.classList.remove("ativo");
-                containerAtual.classList.remove("ativo");
-                // btnSair.classList.remove("firstMove");
-                // showTimeout();
-            }
-        } else if (!!btnn.hasAttribute(option3)) {
-            // btnChamarProx.classList.add("ativo");
-            // btnChamarAtual.classList.remove("ativo");
-            // btnChamarLidos.classList.remove("ativo");
-
-            if (!btnSair.classList.contains("thirdMove")) {
-                // containerProx.classList.add("ativo");
-                containerAtual.classList.remove("ativo");
-                containerLidos.classList.remove("ativo");
-                // btnSair.classList.remove("firstMove");
-                // showTimeout();
-            }
+    for (let y = 0; y < listaBtnImg.length; y++) {
+        const btn = listaBtnImg[y];
+        btn.onclick = (e) => {
+            moverBtndeSaida(e);
+            growUp(e);
         }
     }
 
-    function btnMoviment(event) {
+    function moverBtndeSaida(event) {
         event.preventDefault();
         if (!!btnSair.classList.contains("checkpoint")) {
             btnSair.classList.remove("secondMove");
@@ -204,15 +186,34 @@ const Atualizations = () => {
         }
     }
 
+    function growUp(event) {
+        event.preventDefault();
+        for (let i = 0; i < listaDeContainersPrimarios.length; i++) {
+            const e = listaDeContainersPrimarios[i];
+            e.onclick = () => {
+                e.classList.toggle("grow")
+            }
+        }
+        for (let x = 0; x < listaDeContainersSecundarios.length; x++) {
+            const e = listaDeContainersSecundarios[x];
+            e.classList.toggle('ativo')
+        }
+
+    }
+
     function aux() {
-        btnChamarProx.classList.remove("ativo");
-        btnChamarAtual.classList.remove("ativo");
-        btnChamarLidos.classList.remove("ativo");
+        for (let i = 0; i < listaDeContainersPrimarios.length; i++) {
+            const e = listaDeContainersPrimarios[i];
+            e.classList.remove("ativo")
+        }
         btnSair.classList.remove("checkpoint");
     }
 
     function quit(event) {
         event.preventDefault();
+        removeAtivo(listaDeBtns);
+        retirarDisabled();
+
 
         if (!!containerAtual.classList.contains("ativo")) {
             var resultado = containerAtual;
@@ -223,17 +224,18 @@ const Atualizations = () => {
         } else {
             var resultado = containerAtual;
         }
-        const containerDescoberto = resultado;
+        const containerCerto = resultado;
 
-        const containerCerto = containerDescoberto;
 
         if (!containerCerto.classList.contains("ativo")) {
+
             if (!!btnSair.classList.contains("backToStart") ||
                 !!btnSair.classList.contains("backToStart2")
             ) {
                 btnSair.classList.remove("backToStart");
                 btnSair.classList.remove("backToStart2");
                 btnSair.classList.remove("cp3");
+
 
                 setTimeout(() => {
                     btnSair.classList.add("cp2");
@@ -252,6 +254,7 @@ const Atualizations = () => {
         } else if (!!btnSair.classList.contains("secondMove") ||
             !!btnSair.classList.contains("fourthMove")
         ) {
+
             aux();
             containerCerto.classList.remove("ativo");
             btnSair.classList.remove("secondMove");
@@ -261,7 +264,9 @@ const Atualizations = () => {
             }, 1);
         } else if (!!btnSair.classList.contains("thirdMove")) {
             aux();
+            removeAtivo(listaDeContainersSecundarios)
             containerCerto.classList.remove("ativo");
+            containerCerto.classList.remove('grow')
             btnSair.classList.remove("thirdMove");
             setTimeout(() => {
                 btnSair.classList.add("cp3");
@@ -274,31 +279,10 @@ const Atualizations = () => {
         event.preventDefault();
     }
 
-    function growUp(event) {
-        event.preventDefault();
-        containerAtual.classList.toggle("grow");
-        containerLidos.classList.toggle("grow");
-        containerProx.classList.toggle("grow");
-        containerChooseImage.classList.toggle("ativo");
-        containerChooseImage2.classList.toggle("ativo");
-        containerChooseImage3.classList.toggle("ativo");
-    }
+
 
     //LISTENERS
     btnIniciar.addEventListener("click", ativarContainer);
-    // btnChamarAtual.addEventListener('click', show)
-    btnChamarLidos.addEventListener("click", show);
-    btnChamarProx.addEventListener("click", show);
-
-    btnChooseImage.addEventListener("click", growUp);
-    btnChooseImage.addEventListener("click", btnMoviment);
-
-    btnChooseImage2.addEventListener("click", growUp);
-    btnChooseImage2.addEventListener("click", btnMoviment);
-
-    btnChooseImage3.addEventListener("click", growUp);
-    btnChooseImage3.addEventListener("click", btnMoviment);
-
     btnSave.addEventListener("click", save);
     btnSair.addEventListener("click", quit);
 };
