@@ -22,12 +22,27 @@ const Atualizations = () => {
 
     //FUNÇÕES
 
-    function removeAtivo(listaDeElementos) {
-        for (let i = 0; i < listaDeElementos.length; i++) {
-            const elements = listaDeElementos[i];
-            elements.classList.remove("ativo");
+    for (let i = 0; i < listaDeBtns.length; i++) {
+        const btn = listaDeBtns[i];
+        btn.onclick = () => {
+            ativarbtn(btn);
+            btnDisabled(btn);
+            abrirMenu(btn);
+            auxiliarFunctionQuitiliarDeMovimentacaoDoBtnSair();
+        };
+
+    }
+
+    for (let y = 0; y < listaBtnImg.length; y++) {
+        const btn = listaBtnImg[y];
+        btn.onclick = (e) => {
+            moverBtndeSaida(e);
+            growUp(e);
         }
     }
+
+
+    //FUNÇÕES DE ADIÇÃO DE CLASSES CSS ------------------------------------------------------------------------------------------------------------
 
     function ativarContainer(event) {
         event.preventDefault();
@@ -35,7 +50,7 @@ const Atualizations = () => {
             removeAtivo(listaDeBtns);
             removeAtivo(listaDeContainersPrimarios);
             retirarDisabled();
-            retirarGrow();
+             retirarGrow();
         } else {
             btnSair.classList.add("firstMove");
             removeAtivo(listaDeBtns);
@@ -55,18 +70,6 @@ const Atualizations = () => {
         btnIniciar.classList.toggle("ativo");
         btnSair.classList.toggle("ativo");
         containerAtualizar.classList.toggle("ativo");
-    }
-
-    for (let i = 0; i < listaDeBtns.length; i++) {
-        const btn = listaDeBtns[i];
-        btn.onclick = () => {
-            ativarbtn(btn);
-            desativarbtn(btn);
-            abrirMenu(btn);
-            showTimeout();
-        };
-
-
     }
 
     function abrirMenu(btn) {
@@ -97,23 +100,30 @@ const Atualizations = () => {
 
     }
 
-    function desativarbtn(btn) {
-
-        for (let i = 0; i < listaDeBtns.length; i++) {
-            const e = listaDeBtns[i];
-            if (e != btn) {
-                e.disabled = true;
+    function growUp(event) {
+        event.preventDefault();
+        for (let i = 0; i < listaDeContainersPrimarios.length; i++) {
+            const e = listaDeContainersPrimarios[i];
+            if (e.classList.contains('ativo')) {
+                e.classList.toggle('grow')
             }
+    
+            
+        }
+        for (let x = 0; x < listaDeContainersSecundarios.length; x++) {
+            const e = listaDeContainersSecundarios[x];
+            e.classList.toggle('ativo')
         }
 
     }
 
-    function retirarDisabled() {
-        for (let x = 0; x < listaDeBtns.length; x++) {
-            const e = listaDeBtns[x];
-            if (e.disabled === true) {
-                e.disabled = false
-            }
+
+    //FUNÇÕES DE REMOÇÃO DE CLASSES CSS ------------------------------------------------------------------------------------------------------------
+
+    function removeAtivo(listaDeElementos) {
+        for (let i = 0; i < listaDeElementos.length; i++) {
+            const elements = listaDeElementos[i];
+            elements.classList.remove("ativo");
         }
     }
 
@@ -133,13 +143,76 @@ const Atualizations = () => {
         }
     }
 
-
     function decrease() {
         btnSair.classList.remove("backToStart", "backToStart2", "cp3");
     }
 
 
-    function showTimeout() {
+    //FUNÇÕES DE MOVIMENTAÇÃO DO BOTÃO X ------------------------------------------------------------------------------------------------------------
+
+    function quit(event) {
+        event.preventDefault();
+        removeAtivo(listaDeBtns);
+        retirarDisabled();
+
+
+        if (!!containerAtual.classList.contains("ativo")) {
+            var resultado = containerAtual;
+        } else if (!!containerLidos.classList.contains("ativo")) {
+            var resultado = containerLidos;
+        } else if (!!containerProx.classList.contains("ativo")) {
+            var resultado = containerProx;
+        } else {
+            var resultado = containerAtual;
+        }
+        const containerCerto = resultado;
+
+
+        if (!containerCerto.classList.contains("ativo")) {
+
+            if (!!btnSair.classList.contains("backToStart") ||
+                !!btnSair.classList.contains("backToStart2")
+            ) {
+                btnSair.classList.remove("backToStart", "backToStart2", "cp3");
+            
+                setTimeout(() => {
+                    btnSair.classList.add("cp2");
+                }, 1);
+            }
+
+            setTimeout(() => {
+                btnSair.classList.add("slideLeft");
+            }, 150);
+            containerAtualizar.classList.add("slideLeft");
+            btnIniciar.classList.remove("ativo");
+            setTimeout(() => {
+                containerAtualizar.classList.remove("ativo");
+                btnSair.classList.remove("ativo");
+            }, 600);
+        } else if (!!btnSair.classList.contains("secondMove") ||
+            !!btnSair.classList.contains("fourthMove")
+        ) {
+
+            auxiliarFunctionQuit();
+            containerCerto.classList.remove("ativo");
+            btnSair.classList.remove("secondMove", "fourthMove");
+            
+            setTimeout(() => {
+                btnSair.classList.add("backToStart");
+            }, 1);
+        } else if (!!btnSair.classList.contains("thirdMove")) {
+            auxiliarFunctionQuit();
+            removeAtivo(listaDeContainersSecundarios)
+            containerCerto.classList.remove("ativo", "grow");
+            btnSair.classList.remove("thirdMove");
+            setTimeout(() => {
+                btnSair.classList.add("cp3");
+            }, 1);
+            btnSair.classList.add("backToStart2");
+        }
+    }
+
+    function auxiliarFunctionQuitiliarDeMovimentacaoDoBtnSair() {
         btnSair.classList.remove("firstMove");
 
         if (!btnSair.classList.contains('thirdMove')) {
@@ -153,14 +226,6 @@ const Atualizations = () => {
         decrease();
 
 
-    }
-
-    for (let y = 0; y < listaBtnImg.length; y++) {
-        const btn = listaBtnImg[y];
-        btn.onclick = (e) => {
-            moverBtndeSaida(e);
-            growUp(e);
-        }
     }
 
     function moverBtndeSaida(event) {
@@ -186,22 +251,7 @@ const Atualizations = () => {
         }
     }
 
-    function growUp(event) {
-        event.preventDefault();
-        for (let i = 0; i < listaDeContainersPrimarios.length; i++) {
-            const e = listaDeContainersPrimarios[i];
-            e.onclick = () => {
-                e.classList.toggle("grow")
-            }
-        }
-        for (let x = 0; x < listaDeContainersSecundarios.length; x++) {
-            const e = listaDeContainersSecundarios[x];
-            e.classList.toggle('ativo')
-        }
-
-    }
-
-    function aux() {
+    function auxiliarFunctionQuit() {
         for (let i = 0; i < listaDeContainersPrimarios.length; i++) {
             const e = listaDeContainersPrimarios[i];
             e.classList.remove("ativo")
@@ -209,71 +259,46 @@ const Atualizations = () => {
         btnSair.classList.remove("checkpoint");
     }
 
-    function quit(event) {
-        event.preventDefault();
-        removeAtivo(listaDeBtns);
-        retirarDisabled();
 
+    //FUNÇÕES DE RESTRIÇÃO DE BOTÕES ------------------------------------------------------------------------------------------------------------
 
-        if (!!containerAtual.classList.contains("ativo")) {
-            var resultado = containerAtual;
-        } else if (!!containerLidos.classList.contains("ativo")) {
-            var resultado = containerLidos;
-        } else if (!!containerProx.classList.contains("ativo")) {
-            var resultado = containerProx;
-        } else {
-            var resultado = containerAtual;
-        }
-        const containerCerto = resultado;
-
-
-        if (!containerCerto.classList.contains("ativo")) {
-
-            if (!!btnSair.classList.contains("backToStart") ||
-                !!btnSair.classList.contains("backToStart2")
-            ) {
-                btnSair.classList.remove("backToStart");
-                btnSair.classList.remove("backToStart2");
-                btnSair.classList.remove("cp3");
-
-
-                setTimeout(() => {
-                    btnSair.classList.add("cp2");
-                }, 1);
+    function retirarDisabled() {
+        for (let x = 0; x < listaDeBtns.length; x++) {
+            const e = listaDeBtns[x];
+            if (e.disabled === true) {
+                e.disabled = false
             }
-
-            setTimeout(() => {
-                btnSair.classList.add("slideLeft");
-            }, 150);
-            containerAtualizar.classList.add("slideLeft");
-            btnIniciar.classList.remove("ativo");
-            setTimeout(() => {
-                containerAtualizar.classList.remove("ativo");
-                btnSair.classList.remove("ativo");
-            }, 600);
-        } else if (!!btnSair.classList.contains("secondMove") ||
-            !!btnSair.classList.contains("fourthMove")
-        ) {
-
-            aux();
-            containerCerto.classList.remove("ativo");
-            btnSair.classList.remove("secondMove");
-            btnSair.classList.remove("fourthMove");
-            setTimeout(() => {
-                btnSair.classList.add("backToStart");
-            }, 1);
-        } else if (!!btnSair.classList.contains("thirdMove")) {
-            aux();
-            removeAtivo(listaDeContainersSecundarios)
-            containerCerto.classList.remove("ativo");
-            containerCerto.classList.remove('grow')
-            btnSair.classList.remove("thirdMove");
-            setTimeout(() => {
-                btnSair.classList.add("cp3");
-            }, 1);
-            btnSair.classList.add("backToStart2");
         }
     }
+
+    function btnDisabled(btn) {
+
+        for (let i = 0; i < listaDeBtns.length; i++) {
+            const e = listaDeBtns[i];
+            if (e != btn) {
+                e.disabled = true;
+            }
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     function save(event) {
         event.preventDefault();

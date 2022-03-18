@@ -1,56 +1,58 @@
 const Informations = () => {
-    const btnLidos = document.querySelector('[data-btn-lidos]')
-    const btnAtual = document.querySelector('[data-btn-atual]')
-    const btnProx = document.querySelector('[data-btn-proximo]')
+
+    const listaDeBtns = document.querySelectorAll('.navigation_buttons button')
 
     const containerLidos = document.querySelector('[data-container-lidos]')
     const containerAtual = document.querySelector('[data-container-atual]')
     const containerProx = document.querySelector('[data-container-prox]')
 
-
-
-
-    function btnLidosLayout(event) {
-        event.preventDefault();
-
-        containerLidos.classList.add('ativo')
-        containerAtual.classList.remove('ativo')
-        containerProx.classList.remove('ativo')
-
-        btnLidos.classList.add('btn_ativo')
-        btnAtual.classList.remove('btn_ativo')
-        btnProx.classList.remove('btn_ativo')
+    
+   
+for (let i = 0; i < listaDeBtns.length; i++) {
+    const btn = listaDeBtns[i];
+    
+    btn.onclick = (event)=>{
+       event.preventDefault();
+       mostrarView(btn);
     }
+}
 
-    function btnAtualLayout(event) {
-        event.preventDefault();
 
-        containerLidos.classList.remove('ativo')
-        containerAtual.classList.add('ativo')
-        containerProx.classList.remove('ativo')
+function mostrarView(button){
+    
+    button.classList.add('btn_ativo')
 
-        btnLidos.classList.remove('btn_ativo')
-        btnAtual.classList.add('btn_ativo')
-        btnProx.classList.remove('btn_ativo')
-
+    for (let i = 0; i < listaDeBtns.length; i++) {
+        const e = listaDeBtns[i];
+        if (e != button) {
+           e.classList.remove('btn_ativo') 
+        }
     }
+        const livroAtual = "data-btn-atual";
+        const livrosLidos = "data-btn-lidos";
+        const proximosLivros = "data-btn-proximo";
 
-    function btnProxLayout(event) {
-        event.preventDefault();
+        if (button.hasAttribute(livroAtual)) {
+            containerLidos.classList.remove('ativo')
+            containerAtual.classList.add('ativo')
+            containerProx.classList.remove('ativo')
+            
 
-        containerLidos.classList.remove('ativo')
-        containerAtual.classList.remove('ativo')
-        containerProx.classList.add('ativo')
+        } else if (button.hasAttribute(livrosLidos)) {
+            containerLidos.classList.add('ativo')
+            containerAtual.classList.remove('ativo')
+            containerProx.classList.remove('ativo')
 
-        btnLidos.classList.remove('btn_ativo')
-        btnAtual.classList.remove('btn_ativo')
-        btnProx.classList.add('btn_ativo')
+        } else if (button.hasAttribute(proximosLivros)) {
+            containerLidos.classList.remove('ativo')
+            containerAtual.classList.remove('ativo')
+            containerProx.classList.add('ativo')
 
-    }
+        }
+    
+}
 
-    btnLidos.addEventListener('click', btnLidosLayout);
-    btnAtual.addEventListener('click', btnAtualLayout);
-    btnProx.addEventListener('click', btnProxLayout);
+
 }
 
 export default Informations;
