@@ -267,6 +267,8 @@ const Atualizations = () => {
             const e = listaDeBtns[x];
             if (e.disabled === true) {
                 e.disabled = false
+                e.classList.remove('btn_disabled')
+                
             }
         }
     }
@@ -277,27 +279,11 @@ const Atualizations = () => {
             const e = listaDeBtns[i];
             if (e != btn) {
                 e.disabled = true;
+                e.classList.add('btn_disabled')
             }
         }
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     function save(event) {
